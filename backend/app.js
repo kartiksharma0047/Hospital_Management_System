@@ -34,6 +34,10 @@ app.use("/api/v1/message",messageRouter);
 app.use("/api/v1/user",userRouter);
 app.use("/api/v1/appointment",appointmentRouter)
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 dbConnection();
 
