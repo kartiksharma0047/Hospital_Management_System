@@ -1,5 +1,5 @@
 import express from "express";
-import { config } from "dotenv";
+import { configDotenv } from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
@@ -10,7 +10,7 @@ import userRouter from './Routers/userRouter.js'
 import appointmentRouter from './Routers/appointmentRouter.js'
 
 const app = express();
-config({ path: "./config/config.env" });
+configDotenv();
 
 // Middlewares
 app.use(
