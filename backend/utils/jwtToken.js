@@ -14,5 +14,4 @@ export const generateToken = (user, message, statusCode, res) => {
     user,
     token,
   });
-  console.log(message,user,token);
 };

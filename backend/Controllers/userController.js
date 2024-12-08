@@ -5,7 +5,6 @@ import { generateToken } from "../utils/jwtToken.js";
 import cloudinary from "cloudinary";
 
 export const patientRegister = catchAsyncErrors(async (req, res, next) => {
-  console.log(req.body)
   const { firstName, lastName, email, phone, dob, gender, password, role } =
     req.body;
   if (
@@ -119,6 +118,8 @@ export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
     .cookie("adminToken", "", {
       httpOnly: true,
       expires: new Date(Date.now()),
+      sameSite: "none",
+      secure: true,
     })
     .json({
       success: true,
@@ -132,6 +133,8 @@ export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
     .cookie("patientToken", "", {
       httpOnly: true,
       expires: new Date(Date.now()),
+      sameSite: "none",
+      secure: true,
     })
     .json({
       success: true,
@@ -197,15 +200,15 @@ export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
     gender,
     password,
     doctorDepartment,
-    role:"Doctor",
-    docAvatar:{
-      public_id:cloudinaryResponse.public_id,
-      url:cloudinaryResponse.secure_url,
-    }
+    role: "Doctor",
+    docAvatar: {
+      public_id: cloudinaryResponse.public_id,
+      url: cloudinaryResponse.secure_url,
+    },
   });
   res.status(200).json({
-    success:true,
-    message:"New Doctor Registered!",
-    doctor
-  })
+    success: true,
+    message: "New Doctor Registered!",
+    doctor,
+  });
 });
