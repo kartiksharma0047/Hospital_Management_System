@@ -19,6 +19,8 @@ const Register = () => {
 
   const handleRegistration = async (e) => {
     e.preventDefault();
+    const payload = { firstName, lastName, email, phone, dob, gender, password, role: "Patient" };
+    console.log("Sending payload:", payload);
     try {
       await axios
         .post(
